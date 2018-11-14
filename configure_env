@@ -1,0 +1,9 @@
+#save current paths
+export OLD_PATH=$PATH
+export OLD_LD_LIBRARY_PATH=$LD_LIBRARY_PATH
+export OLD_JAVA_HOME=$JAVA_HOME
+
+#target jdk8
+PATH=/netshare/software/lang/java/jdk1.8.0_172/bin:$PATH
+LD_LIBRARY_PATH=/netshare/software/lang/java/jdk1.8.0_172/lib
+JAVA_HOME=/netshare/software/lang/java/jdk1.8.0_172
