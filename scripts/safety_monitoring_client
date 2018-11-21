@@ -1,0 +1,8 @@
+#/bin/bash
+if [ $# -ne 2 ] 
+    then echo "You need to provide two arguments"; exit
+fi
+export EJB_JAR=$DEPLOYMENT_DIR/safety-monitoring-ejb-1.0.0.jar
+export JAR_FILE_ONE=$GLASSFISH_HOME/lib/gf-client.jar
+export DERBY_INSTALL_LOC=$INSTALL_DIR/$GLASSFISH_ARCHIVE/javadb
+java -classpath "$EJB_JAR:$JAR_FILE_ONE" -DAS_DERBY_INSTALL=$DERBY_INSTALL_LOC safety_monitoring.SafetyMonitoringClient $1 $2

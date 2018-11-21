@@ -1,17 +1,6 @@
 package safety_monitoring;
-
-import javax.jws.WebMethod;
-import javax.jws.WebService;
-import javax.jws.soap.SOAPBinding;
-import javax.jws.soap.SOAPBinding.Style;
- 
-//Service Endpoint Interface
-@WebService
-@SOAPBinding(style = Style.RPC)
-
-public interface WindowServer{
- 
-	@WebMethod String WindowServer(String window_sensor);
-	@WebMethod boolean AddWindow(String window_sensor);
- 
+import javax.ejb.Remote;
+@Remote
+public interface WindowServer {
+  public String getWindowState(String window_sensor);
 }

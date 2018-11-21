@@ -20,7 +20,10 @@ repositories {
  
  //all sorts of various dependencies, most for testing
 dependencies {
-    compile 'org.slf4j:slf4j-api:1.7.24'
+    compile( 
+            'org.slf4j:slf4j-api:1.7.24',
+            'javax.ejb:javax.ejb-api:3.2'
+    )
     testCompile(
             'junit:junit:4.12',
             'org.junit.jupiter:junit-jupiter-api:5.1.0',
@@ -37,6 +40,6 @@ dependencies {
 
  //data for the jar file
 jar {
-    baseName = 'safety-monitoring'
+    baseName = 'safety-monitoring-ejb'
     version = '1.0.0'
 }
