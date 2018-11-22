@@ -1,13 +1,13 @@
-This is a JAX-WS java project to simulate sensor data from doors and windows.
-This application is built and supported in java 1.8.0 since subsequent versions of java remove JAX-WS
+This is an Enterprise Java Beans java project to simulate sensor data from doors and windows.
+This application is built and supported in java 1.8.0 since subsequent versions of java remove EJB interfaces
 
 Problem description
 --------------------------------------------------------------------------------------------------------
 Two servers:
    doors:
        [
-           Entry Door,
-           VIP door
+           EntryDoor,
+           VIPDoor
        ]
    windows:
        [
@@ -28,7 +28,7 @@ window states:
 Interfaces that are available to the client:
 window server
     input:
-        window number
+        window name
     output:
         if window number exists, return status.
 Door server
@@ -41,11 +41,8 @@ Door server
 Installation and usage instructions
 ---------------------------------------------------------------------------------------------------------
 
-This application has been proven to run on the machines in the linux lab in the UAH CS department. There is a small hiccup with the machines in that the default ENV sets the java version to 10,
-    which does not easily support JAX-WS as the Java EE features have already been removed. Luckily, there are older versions installed that do support JAX-WS out on /netshare.
-
-if you are running this application on a machine in the linux lab, be sure to run `source configure_env` to adjust the ENV to use java 1.8. When you want to restore your old ENV settings,
-    run `source unconfigure_env` to restore what you had previously.
+This application has been proven to run on the glassfish VM's provided by Dr. Etzkorn in the UAH CS department.
+A large amount of development work was done using Glassfish docker images.
 
 To build (Linux):
     open a command prompt and navigate to this directory.
@@ -64,31 +61,22 @@ To test (Windows):
     run 'gradlew.bat test'
 
 To launch the server (Linux):
-    open a command prompt and navigate to this directory.
-    build the project. (If not already built.)
-    'java -cp build/libs/safety-monitoring-1.0.0.jar safety_monitoring.ServerLauncher'
+    Take the jar from the output of the build process (located at ./build/libs/safety-monitoring-ejb-1.0.0.jar) and deploy it on glassfish.
 
-To launch the server (Windows):
-    open a command prompt and navigate to this directory.
-    build the project. (If not already built.)
-    'java -cp build/libs/safety-monitoring-1.0.0.jar safety_monitoring.ServerLauncher'
-
-To populate the sensors for Very Important Company (Linux):
-    open a command prompt and navitgate to this directory.
-    build the project. (If not already built.)
-    'java -cp build/libs/safety-monitoring-1.0.0.jar safety_monitoring.PopulateVeryImportantCompany'
-
-To populate the sensors for Very Important Company (Windows):
-    open a command prompt and navitgate to this directory.
-    build the project. (If not already built.)
-    'java -cp build/libs/safety-monitoring-1.0.0.jar safety_monitoring.PopulateVeryImportantCompany'
+To launch the server (Docker):
+    If you have docker installed, you can deploy the application on the glassfish docker image bundled in source control. After building the application, run the "build_deployment" script, followed by the "run_deployment" script to launch the container with the jar set to autodeploy.
 
 To use the client (Linux):
     open a command prompt and navigate to this directory.
     build the project. (If not already built.)
-    'java -cp build/libs/safety-monitoring-1.0.0.jar safety_monitoring.SafetyMonitoringClient [ "Window" | "Door" | "Room" ] [ "VIP Door" | "Entry Door" | "VIPWindowNorth" | "VIPWindowEast" | "VIP Room" | "Receptionist Room" ]'
+    navigate into the scripts directory, and edit the "safety_monitoring_client" script variables to your environment.
+    run the script with the following syntax:
+        ./safety_monitoring_client [ "Window" | "Door" ] [ "VIP Door" | "Entry Door" | "VIPWindowNorth" | "VIPWindowEast" ]
 
-To use the client (Windows):
-    open a command prompt and navigate to this directory.
+To use the client (Docker):
     build the project. (If not already built.)
-    'java -cp build/libs/safety-monitoring-1.0.0.jar safety_monitoring.SafetyMonitoringClient [ "Window" | "Door" | "Room" ] [ "VIP Door" | "Entry Door" | "VIPWindowNorth" | "VIPWindowEast" | "VIP Room" | "Receptionist Room" ]'
+    Open an interactive shell to the docker image with: docker exec -it <image_name> bash
+    (to find the image name, do `docker ps`)
+    The script defaults are set up to run in the docker environment
+    run the script with the following syntax:
+        ./safety_monitoring_client [ "Window" | "Door" ] [ "VIP Door" | "Entry Door" | "VIPWindowNorth" | "VIPWindowEast" ]
