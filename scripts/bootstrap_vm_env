@@ -1,0 +1,4 @@
+export DEPLOYMENT_DIR=/home/theglassfish/safety-monitoring-ejb/build/libs
+export GLASSFISH_HOME=/home/theglassfish/glassfish5/glassfish
+export INSTALL_DIR=/
+export GLASSFISH_ARCHIVE=/home/theglassfish/glassfish5

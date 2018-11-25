@@ -70,6 +70,7 @@ To use the client (Linux):
     open a command prompt and navigate to this directory.
     build the project. (If not already built.)
     navigate into the scripts directory, and edit the "safety_monitoring_client" script variables to your environment.
+    We have included a script to bootstrap the glassfish vm called "bootstrap_vm_env" to show some examples.
     run the script with the following syntax:
         ./safety_monitoring_client [ "Window" | "Door" ] [ "VIP Door" | "Entry Door" | "VIPWindowNorth" | "VIPWindowEast" ]
 
